@@ -14,7 +14,7 @@ import java.util.Vector;
  */
 public class Results {
 
-hhhh
+
 
     // a base for filenames
     static String fnBase = "results_222.dat";

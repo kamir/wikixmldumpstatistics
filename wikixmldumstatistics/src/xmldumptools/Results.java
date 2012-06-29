@@ -17,7 +17,7 @@ public class Results {
 
 
     // a base for filenames
-    static String fnBase = "results_222.dat";
+    static String fnBase = "results.dat";
 
     // a reused writer for result files
     static BufferedWriter bw = null;

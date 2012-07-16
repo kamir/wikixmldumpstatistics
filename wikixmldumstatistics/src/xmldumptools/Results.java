@@ -14,6 +14,8 @@ import java.util.Vector;
  */
 public class Results {
 
+
+
     // a base for filenames
     static String fnBase = "results.dat";
 
@@ -100,7 +102,7 @@ public class Results {
                 }
                 break;
             }
-            // im zweiten RUN die aktuell gezählten WORTE jeweils um 1 hochzählen.
+            // im zweiten RUN die aktuell gezï¿½hlten WORTE jeweils um 1 hochzï¿½hlen.
             case 2: {
                 for( String word : data.keySet() ) {
 

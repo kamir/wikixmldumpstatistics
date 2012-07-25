@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Mon Jul 16 12:29:41 CEST 2012:
-Booten von Derby Version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): Instanz a816c00e-0138-8f56-1b31-0000033ac488
-f√ºr Datenbankverzeichnis /home/usera/bin/wikixmldumpstatistics/java/runA2/plaintext_zu/WikiDumpDB   mit Klassenladeprogrammn sun.misc.Launcher$AppClassLoader@1372a1a
+Fri Jul 20 09:38:06 CEST 2012:
+Booten von Derby Version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): Instanz a816c00e-0138-a352-726e-0000044f8ec8
+für Datenbankverzeichnis /Users/kamir/RESEARCH_DATA/WIKIPEDIA/work/en/WikiDumpDB   mit Klassenladeprogrammn sun.misc.Launcher$AppClassLoader@27a8c4e7
 
-java.vendor=Sun Microsystems Inc.
-java.runtime.version=1.6.0_23-b23
-user.dir=/home/usera/bin/wikixmldumpstatistics/java/wikixmldumpstatistics/bin
+java.vendor=Apple Inc.
+java.runtime.version=1.6.0_29-b11-402-11M3527
+user.dir=/Users/kamir/projects/MPI/wikixmldumpstatistics/java/wikixmldumpstatistics/bin
 derby.system.home=null
-Das Ladeprogramm f√ºr Datenbankklassen wurde gestartet - derby.database.classpath=''
+Das Ladeprogramm für Datenbankklassen wurde gestartet - derby.database.classpath=''

@@ -132,6 +132,8 @@ public class DumpWordStatisticsCreator {
 		return null;
 	}
 
+        public static boolean doJUSTPreparation = true;
+        
 	public static void main(String[] args) throws IOException {
 
                 Results.init();
@@ -171,7 +173,12 @@ public class DumpWordStatisticsCreator {
 				wxp.parse();
 				System.out.println(' ');
 			}
-
+                        
+                        if (doJUSTPreparation ) {
+                            System.out.println( "Finished." );
+                            System.exit(0);
+                        }
+                        
                         Results.run = 1;
                         System.out.println("Second pass - count words in plain text files\n" +
                                 "and write statistics file to folder:");

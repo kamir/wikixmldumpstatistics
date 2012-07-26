@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Fri Jul 20 09:38:06 CEST 2012:
-Booten von Derby Version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): Instanz a816c00e-0138-a352-726e-0000044f8ec8
-für Datenbankverzeichnis /Users/kamir/RESEARCH_DATA/WIKIPEDIA/work/en/WikiDumpDB   mit Klassenladeprogrammn sun.misc.Launcher$AppClassLoader@27a8c4e7
+Thu Jul 26 20:00:16 CEST 2012:
+Booten von Derby Version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): Instanz a816c00e-0138-c472-399e-0000044f60c8
+für Datenbankverzeichnis /Users/kamir/RESEARCH_DATA/WIKIPEDIA/work/en_T2/WikiDumpDB   mit Klassenladeprogrammn sun.misc.Launcher$AppClassLoader@7a9664a1
 
 java.vendor=Apple Inc.
 java.runtime.version=1.6.0_29-b11-402-11M3527

@@ -109,15 +109,14 @@ public class DumpWordStatisticsCreator {
 		if (mainDirectory.charAt(mainDirectory.length() - 1) != '/') {
 			mainDirectory = mainDirectory + "/";
 		}
-		String databaseSubdirectory = "WikiDumpDB";
+		String databaseSubdirectory = "WikiDumpDBv2";
 
 		WikiDB db = null;
 
 		try {
 			db = new WikiDB(mainDirectory, databaseSubdirectory);
 			return db;
-		} catch (IOException e) {
-			e.printStackTrace();
+		
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} finally {

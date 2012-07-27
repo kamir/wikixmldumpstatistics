@@ -131,7 +131,7 @@ public class DumpWordStatisticsCreator {
 		return null;
 	}
 
-        public static boolean doJUSTPreparation = true;
+        public static boolean doJUSTPreparation = false;
         
 	public static void main(String[] args) throws IOException {
 
@@ -174,6 +174,7 @@ public class DumpWordStatisticsCreator {
 			}
                         
                         if (doJUSTPreparation ) {
+                            System.out.println( "Used the parameter: doJUSTPreparation=" + doJUSTPreparation );
                             System.out.println( "Finished." );
                             System.exit(0);
                         }

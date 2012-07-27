@@ -80,7 +80,8 @@ public class DocumentStatisticsCreator {
      * 
      * @param rawWikiText
      * @return 
-     */    
+     */
+     /* this is an additional note*/     
     private String _filterText(String rawWikiText) {
         
         String filter = rawWikiText.replaceAll(". ", " ");

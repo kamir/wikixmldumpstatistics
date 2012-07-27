@@ -15,10 +15,54 @@ import java.util.Vector;
  */
 public class Results {
 
+    
+    // We want to define a threshold for tests, so not all
+    // records are used, just a part of it lets say 1000.
+    public static boolean doLimitForTests = false;
+    public static int nrOfTestRecords = 1000;
+    
+    // We want to define a threshold for output splits, so not all
+    // records are stored in RAM, this goes in line with the MapReduce approach
+    public static boolean doSplitHashTables = false;
+    public static int splitSize = 10000;
+    
+    /**
+     * all temporary files will be concatenated to one
+     * final result file.
+     */
+    private static void combineAllFiles() {
 
+        // at the end all splits have to be combined again to one
+        // large file with all results ...
+        
+        System.out.println(" >>> combine results: " );
+        
+        System.out.println(" --> done! " );
+        
+    }
+
+    /**
+     * to reduce the storage cosumption we have to flush after
+     * a certain number of words which occured in our articles.
+     */
+    static int splitCounter;
+    private static void triggerIntermediateFlush() {
+        
+        splitCounter++;
+        String splitFN = "./split_" + splitCounter + ".dat";
+        
+        // the number of records in RAM has been checked and now
+        // we can write a split to disc
+        
+        // and we can cleanup the RAM and create a new buffer
+        
+        System.out.println(" >>> create a new split(" + splitCounter + ") " + splitFN );
+    }
+
+    
 
     // a base for calculated filenames
-    static String fnBase = "results.dat";
+    public static String fnBase = "results.dat";
 
     // a reused writer for result files
     static BufferedWriter bw = null;
@@ -35,15 +79,17 @@ public class Results {
     public static Hashtable<String,Integer> wordCount = new Hashtable<String,Integer>();
 
 
+    
     public static void storeResultLine( String articleName , Hashtable<String, Integer> data, String META ) throws IOException {
         if ( run == 2 ) {
             bw.write( articleName + "\t" + META + "\n" );
             bw.flush();
         }
+        
         mapToGlobalResult( data );
         mapToWordPerarticleCount( articleName , data );
     
-        triggerIntermediateFlush();
+        if ( mustSplitNow() ) triggerIntermediateFlush();
     }
 
 
@@ -120,22 +166,10 @@ public class Results {
         }
     }
 
-    /**
-     * all temporary files will be concatenated to one
-     * final result file.
-     */
-    private static void combineAllFiles() {
-
+    /** checks it we have to create a new split **/ 
+    private static boolean mustSplitNow() {
+        return false;
     }
 
-    /**
-     * to reduce the storage cosumption we have to flush after
-     * a certain number of words which occured in our articles.
-     */
-    public static int nrOfCachedWords = 10000;
-    private static void triggerIntermediateFlush() {
-
-
-    }
 
 }

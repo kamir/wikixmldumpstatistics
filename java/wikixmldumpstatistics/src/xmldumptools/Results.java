@@ -38,9 +38,9 @@ public class Results {
         // at the end all splits have to be combined again to one
         // large file with all results ...
         
-        System.out.println(" >>> combine results: " );
+        System.out.println(">>> combine results: " );
         
-        System.out.println(" --> done! " );
+        System.out.println("--> Ready ... " );
         
     }
 

@@ -12,6 +12,8 @@ import info.bliki.wiki.filter.PlainTextConverter;
 import info.bliki.wiki.impl.DumpWikiModel;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.xml.sax.SAXException;
 
@@ -20,6 +22,16 @@ import org.xml.sax.SAXException;
  * and nr of articles a word occurs in.
  */
 public class DumpWordStatisticsCreator {
+    
+        public static void interruptProcessing() {
+            System.out.println(">>> interrupted by user ... ");
+            try {
+                Results.close();
+            } catch (IOException ex) {
+                Logger.getLogger(DumpWordStatisticsCreator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.exit(0);
+        }
 
 	public DumpWordStatisticsCreator() {
 		super();
@@ -73,14 +85,12 @@ public class DumpWordStatisticsCreator {
 			}
                     } 
                     else {
-                        interruptProcessing();
+                        DumpWordStatisticsCreator.interruptProcessing();
                     }
                     
                 }
 
-        private void interruptProcessing() {
-            
-        }
+
 		
 	}
 

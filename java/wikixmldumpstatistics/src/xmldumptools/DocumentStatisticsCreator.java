@@ -69,8 +69,22 @@ public class DocumentStatisticsCreator {
         }
 
 
+    /**
+     * 
+     * Here we have to eliminate data, which is not usefull for text statistics.
+     * 
+     * - remove numbers
+     * - remove symbol
+     * 
+     * - work with language dependent filters => modularisierung 
+     * 
+     * @param rawWikiText
+     * @return 
+     */    
     private String _filterText(String rawWikiText) {
+        
         String filter = rawWikiText.replaceAll(". ", " ");
+        
         filter = filter.replaceAll("\n", " ");
         filter = filter.replaceAll(", ", " ");
         filter = filter.replaceAll(":", " ");
@@ -78,12 +92,20 @@ public class DocumentStatisticsCreator {
         filter = filter.replaceAll("[\\]\\]]", " ");
         filter = filter.replaceAll("!", " ");
         filter = filter.replaceAll("=", " ");
+        
         return filter;
-
     }
 
-
-        private Hashtable<String, Integer> countWordsInArticle(String filteredText) {
+    
+    /**
+     * Here we split the filtered text and do count the words ...
+     * 
+     * later on we give the value n for n-Gram
+     * 
+     * @param filteredText
+     * @return 
+     */
+    private Hashtable<String, Integer> countWordsInArticle(String filteredText) {
 
 
             StringTokenizer st = new StringTokenizer( filteredText );

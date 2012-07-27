@@ -139,7 +139,7 @@ public class DumpWordStatisticsCreator {
 
 		boolean skipFirstPass = false;
 		if (args.length < 2) {
-			System.err.println("Usage: DumpWordStatisticsCreator <XML-FILE> <WORK-folder> [<SKIP-FIRST_PASS>=true|yes]");
+			System.err.println("*** Usage: DumpWordStatisticsCreator <XML-FILE> <WORK-folder> [<SKIP-FIRST_PASS>=true|yes]");
 			System.exit(-1);
 		}
 		if (args.length > 2) {
@@ -149,6 +149,7 @@ public class DumpWordStatisticsCreator {
 				System.out.println("Option <skip first pass> is set to true");
 			}
 		}
+                
 		// String bz2Filename =
 		// "c:\\temp\\dewikiversity-20100401-pages-articles.xml.bz2";
 		String bz2Filename = args[0];

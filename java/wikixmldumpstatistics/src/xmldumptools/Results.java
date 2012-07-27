@@ -77,9 +77,7 @@ public class Results {
     
     // count all words, no matter to what article they belong
     public static Hashtable<String,Integer> wordCount = new Hashtable<String,Integer>();
-
-
-    
+  
     public static void storeResultLine( String articleName , Hashtable<String, Integer> data, String META ) throws IOException {
         if ( run == 2 ) {
             bw.write( articleName + "\t" + META + "\n" );

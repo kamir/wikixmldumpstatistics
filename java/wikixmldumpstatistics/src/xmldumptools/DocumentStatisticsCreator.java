@@ -55,17 +55,25 @@ public class DocumentStatisticsCreator {
 
                 String filteredText = _filterText( rawWikiText );
 
-                if ( debug ) System.out.println( "***********************************************************************************\n<Filtered :>\n==========\n" + filteredText +"\n***********************************************************************************\n");
+                if ( Results.verbose ) {
+                    System.out.println( "***********************************************************************************\n"+
+                                        "<Filtered :>\n" +
+                                        "============\n" + 
+                                        filteredText + "\n" +
+                                        "***********************************************************************************\n"+
+                            		rawWikiText + 
+                                        "***********************************************************************************\n");
+                }
 
 		fModel.setPageName(fArticle.getTitle());
-		// System.out.println(rawWikiText);
 
                 Hashtable<String, Integer> wc = countWordsInArticle( filteredText );
 
                 String META = "[id:"+fArticle.getId() + "]\t[namespace:" + fArticle.getNamespace() + "]\t" + fArticle.isCategory()  + "\t" + fArticle.isFile()  + "\t" + fArticle.isMain()  + "\t" + fArticle.isProject()  + "\t" + fArticle.isTemplate();
 
-                Results.storeResultLine(fArticle.getTitle() , wc, META );
-
+                Results._storeResultLine(fArticle.getTitle() , wc, META );
+                
+                
         }
 
 

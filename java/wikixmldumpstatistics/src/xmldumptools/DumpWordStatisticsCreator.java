@@ -42,6 +42,7 @@ public class DumpWordStatisticsCreator {
 		}
 
 		public void process(WikiArticle page, Siteinfo siteinfo) throws SAXException {
+                    if ( Results.haveMoreData() ) {
 			if (page.isMain() || page.isCategory() || page.isProject()) {
 				String title = page.getTitle();
 				String titleURL = Encoder.encodeTitleLocalUrl(title);
@@ -59,7 +60,9 @@ public class DumpWordStatisticsCreator {
 
                                 try {
 					creator.renderToFile( null, generatedTXTFilename);
-					System.out.println("(" + counter + ")\t" + generatedTXTFilename );
+					
+                                        System.out.println("(" + counter + ")\t" + generatedTXTFilename );
+                                        
                                         counter++;
 
 				} catch (IOException e) {
@@ -68,7 +71,17 @@ public class DumpWordStatisticsCreator {
 					e1.printStackTrace();
 				}
 			}
-		}
+                    } 
+                    else {
+                        interruptProcessing();
+                    }
+                    
+                }
+
+        private void interruptProcessing() {
+            
+        }
+		
 	}
 
 	static class DemoTemplateArticleFilter implements IArticleFilter {
@@ -150,6 +163,34 @@ public class DumpWordStatisticsCreator {
 			}
 		}
                 
+                // nr of used records for Tests
+		if (args.length > 3) {
+			String arg3 = args[3];
+			int maxNrOfRecords = Integer.parseInt(arg3);
+                        Results.nrOfTestRecords = maxNrOfRecords;
+                        System.out.println("Option <Results.nrOfTestRecords> is set to " + maxNrOfRecords);
+                        Results.doLimitForTests = true;
+                }
+                // size of a split
+		if (args.length > 4) {
+			String arg4 = args[4];
+			int x = Integer.parseInt(arg4);
+                        // Results.splitSize = x;
+                        System.out.println("Option <Results.splitSize> is set to " + x);
+                        Results.doSplitHashTables = true;
+                }
+                // verbose working?
+		if (args.length > 5) {
+			String arg5 = args[5].toLowerCase();
+			if (arg5.equals("true") || arg5.equals("yes")) {
+				Results.verbose = true;
+				System.out.println("Option <Results.verbose> is set to true");
+			}
+                        
+                         
+                }
+
+                
 		// String bz2Filename =
 		// "c:\\temp\\dewikiversity-20100401-pages-articles.xml.bz2";
 		String bz2Filename = args[0];
@@ -162,8 +203,10 @@ public class DumpWordStatisticsCreator {
 
 			// the following directory must exist for image references
 			String imageDirectory = args[1] + "/dump/WikiDumpImages";
-			System.out.println("Prepare wiki database");
-			db = prepareDB(mainDirectory);
+			
+                        System.out.println("Prepare wiki database");
+			
+                        db = prepareDB(mainDirectory);
 			IArticleFilter handler;
 			WikiXMLParser wxp;
 			if (!skipFirstPass) {

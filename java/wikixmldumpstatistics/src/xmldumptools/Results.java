@@ -15,16 +15,19 @@ import java.util.Vector;
  */
 public class Results {
 
+    public static boolean verbose = false;
     
     // We want to define a threshold for tests, so not all
     // records are used, just a part of it lets say 1000.
     public static boolean doLimitForTests = false;
-    public static int nrOfTestRecords = 1000;
+    public static int nrOfTestRecords = 0;
     
     // We want to define a threshold for output splits, so not all
     // records are stored in RAM, this goes in line with the MapReduce approach
     public static boolean doSplitHashTables = false;
-    public static int splitSize = 10000;
+    public static final int splitSize = 10; // Integer.MAX_VALUE;
+    
+    public static int nrOfProcessedRecords = 0;
     
     /**
      * all temporary files will be concatenated to one
@@ -78,16 +81,21 @@ public class Results {
     // count all words, no matter to what article they belong
     public static Hashtable<String,Integer> wordCount = new Hashtable<String,Integer>();
   
-    public static void storeResultLine( String articleName , Hashtable<String, Integer> data, String META ) throws IOException {
+    public static void _storeResultLine( String articleName , Hashtable<String, Integer> data, String META ) throws IOException {
+        inSplitCounter++;
+        nrOfProcessedRecords++;
+
         if ( run == 2 ) {
             bw.write( articleName + "\t" + META + "\n" );
             bw.flush();
+        
+            mapToGlobalResult( data );
+            mapToWordPerarticleCount( articleName , data );
+            
         }
         
-        mapToGlobalResult( data );
-        mapToWordPerarticleCount( articleName , data );
-    
         if ( mustSplitNow() ) triggerIntermediateFlush();
+        
     }
 
 
@@ -163,10 +171,22 @@ public class Results {
             }
         }
     }
-
+    
+    public static int currentSplit = 0;
+    public static int inSplitCounter = 0;
     /** checks it we have to create a new split **/ 
     private static boolean mustSplitNow() {
-        return false;
+        if ( inSplitCounter <= Results.splitSize ) return false;
+        else {
+            inSplitCounter = 0;
+            currentSplit++;
+        }
+        return true;
+    }
+
+    static boolean haveMoreData() {
+        // System.out.println( Results.nrOfTestRecords +" : " + Results.nrOfProcessedRecords );
+        return Results.nrOfTestRecords > Results.nrOfProcessedRecords;
     }
 
 
